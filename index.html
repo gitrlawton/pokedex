@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Defer running JavaScript file until the end, to avoid referencing
+    html elements that do not exist yet. -->
+    <script src="./pokemon.js" defer></script>
+
+</head>
+<body>
+    <main class="main">
+        <header class="header-home">
+            <div class="container">
+                <div class="logo-wrapper">
+                    <img 
+                        src="./assets/pokeball.svg"
+                        alt="pokeball" 
+                    />
+                    <h1>Pokedex</h1>
+                </div>
+                <div class="search-wrapper">
+                    <div class="search-wrap">
+                        <img 
+                            src="./assets/search.svg"
+                            alt="search icon"
+                            class="search-icon" 
+                        />
+                        <!-- Where we write our search text. -->
+                        <input 
+                            type="text" 
+                            class="search-input body3-fonts" 
+                            placeholder="Search"
+                            id="search-input"
+                        />
+                        <img 
+                            src="./assets/cross.svg"
+                            alt="cross icon"
+                            class="search-close-icon"
+                            id="search-close-icon"
+                        />
+                    </div>
+                    <div class="sort-wrapper">
+                        <div class="sort-wrap">
+                            <!-- The sort by icon -->
+                            <img 
+                                src="./assets/sorting.svg"
+                                alt="sorting"
+                                class="sort-icon"
+                                id="sort-icon"
+                            />
+                        </div>
+                        <div class="filter-wrapper">
+                            <p class="body2-fonts">Sort by:</p>
+                            <div class="filter-wrap">
+                                <!-- Sort by number -->
+                                <!-- checked so that it is selected by default -->
+                                <div>
+                                    <input 
+                                        type="radio" 
+                                        id="number" 
+                                        name="filters"
+                                        value="number"
+                                        checked
+                                    />
+                                    <label for="number" class="body3-fonts">Number</label>
+                                </div>
+                                <!-- Sort by name -->
+                                <div>
+                                    <input 
+                                        type="radio" 
+                                        id="name" 
+                                        name="filters" 
+                                        value="name" 
+                                    />
+                                    <label for="name" class="body3-fonts">Name</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- We only have to create a template for a single pokemon.  The details
+        will be filled in dynamically from the API based on which one is chosen -->
+        <section class="pokemon-list">
+            <div class="container">
+                <div class="list-wrapper"></div>
+            </div>        
+            <div id="not-found-message">Pokemon not found</div>   
+        </section>
+    </main>
+</body>
+</html>
