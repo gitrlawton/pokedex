@@ -76,3 +76,51 @@ function displayPokemon(pokemon) {
         listWrapper.appendChild(listItem);
     });
 }
+
+searchInput.addEventListener("keyup", handleSearch);
+
+// Collecting our filtered pokemon.
+function handleSearch() {
+    // Take the text in the search box and convert it to lowercase.
+    const searchTerm = searchInput.value.toLowerCase();
+    let filteredPokemon;
+
+    // If we are searching by number...
+    if (numberFilter.checked) {
+        filteredPokemon = allPokemon.filter((pokemon) => {
+            const pokemonID = pokemon.url.split("/")[6];
+            return pokemonID.startsWith(searchTerm);
+        });
+    }
+    // If we are searching by name...
+    else if (nameFilter.checked) {
+        filteredPokemon = allPokemon.filter((pokemon) => 
+            pokemon.name.toLowerCase().startsWith(searchTerm)
+        );
+    }
+    // Otherwise, neither is checked so display all the pokemon.
+    else {
+        filteredPokemon = allPokemon;
+    }
+
+    displayPokemon(filteredPokemon);
+
+    // Display the "Not Found" message if filter brings up no pokemon.
+    if (filteredPokemon.length === 0) {
+        notFoundMessage.style.display = "block";
+    }
+    // Otherwise hide the "Not Found" message.
+    else {
+        notFoundMessage.style.display = "none";
+    }
+}
+
+// "X" next to search bar.
+const closeButton = document.querySelector(".search-close-icon");
+closeButton.addEventListener("click", clearSearch);
+
+function clearSearch() {
+    searchInput.value ="";
+    displayPokemon(allPokemon);
+    notFoundMessage.style.display = "none";
+}
